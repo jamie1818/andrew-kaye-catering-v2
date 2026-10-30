@@ -14,17 +14,39 @@ site needs is in the `site/` folder.
 
 Shared files: `site/css/site.css`, `site/js/site.js`, `site/images/`, `site/menus/` (PDFs).
 
-## Put it live
+## Where it is live
 
-Upload the **contents** of the `site/` folder to the web root of any host, so that
-`index.html` sits at the top level. Options that take a folder as-is:
+The site is published with GitHub Pages from this repository:
 
-- Netlify: drag the `site` folder onto app.netlify.com/drop.
-- GitHub Pages, Cloudflare Pages, Vercel: point them at the `site` folder.
-- Existing cPanel or FTP hosting: upload into `public_html`.
+- Live site: https://jamie1818.github.io/andrew-kaye-catering-v2/
+- Repository: https://github.com/jamie1818/andrew-kaye-catering-v2
 
-Then point the andrewkayecatering.co.uk domain at the new host. Nothing on the site
-depends on a server, a database or a particular hosting company.
+The `main` branch holds the whole project. The `gh-pages` branch holds only the
+contents of `site/`, and that is what GitHub Pages serves.
+
+### Publish an update
+
+After editing files in `site/` and committing to `main`, push both branches:
+
+```
+git push origin main
+git subtree push --prefix site origin gh-pages
+```
+
+The live site updates a minute or so later.
+
+### Use the real domain
+
+In the repository settings, under Pages, add `andrewkayecatering.co.uk` as the
+custom domain, then at the domain registrar point the domain at GitHub Pages
+(a CNAME record for `www` to `jamie1818.github.io`, and A records for the bare
+domain to GitHub's Pages IPs, listed in GitHub's Pages documentation).
+
+### Host it elsewhere
+
+Nothing on the site depends on a server, a database or a particular host. Upload
+the **contents** of `site/` to the web root of any host (Netlify drop, Cloudflare
+Pages, cPanel `public_html`) so that `index.html` sits at the top level.
 
 ## Edit content
 
